@@ -1,9 +1,6 @@
-<div align="center">
-
-https://imagetourl.cloud/6nhspwvz.svg
-<!-- Project Logo Identity Header -->
-<h1 style="color: #FF0055; font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: 84px; letter-spacing: 3px; margin-bottom: 0px; line-height: 1;">STREC</h1>
-<p style="color: #666666; font-size: 11px; font-weight: bold; letter-spacing: 3px; margin-top: 5px; margin-bottom: 40px;">ULTRA 1080P 60FPS BROADCASTER</p>
+<p align="center">
+  <img src="https://imagetourl.cloud/6nhspwvz.svg" alt="STREC Logo" width="180" height="auto" />
+</p>
 
 [![Android Platform](https://img.shields.io/badge/Platform-Android%208.0%2B-brightgreen.svg?style=flat-square)](#)
 [![Encoding Engine](https://img.shields.io/badge/Pipeline-GPU%20OpenGL-FF0055.svg?style=flat-square)](#)
