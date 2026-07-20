@@ -21,8 +21,14 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
-    - name: Grant Execute Permission for Gradle Launcher
-      run: chmod +x gradlew
+    # FIX: Agar gradlew file nahi hai, toh ye automatic sahi version create kar dega
+    - name: Automatically Generate and Fix Gradle Wrapper
+      run: |
+        if [ ! -f gradlew ]; then
+          echo "Gradlew file missing. Generating a fresh one..."
+          gradle wrapper --gradle-version 8.4
+        fi
+        chmod +x gradlew
 
     - name: Compile and Build Debug APK
       run: ./gradlew assembleDebug
@@ -32,4 +38,3 @@ jobs:
       with:
         name: Strec-Application-Package
         path: app/build/outputs/apk/debug/app-debug.apk
-
