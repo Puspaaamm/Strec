@@ -1,8 +1,6 @@
 <div align="center">
 
-<!-- Injected External Web Font Pipeline for Bebas Neue Rendering -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap">
-
+https://imagetourl.cloud/6nhspwvz.svg
 <!-- Project Logo Identity Header -->
 <h1 style="color: #FF0055; font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: 84px; letter-spacing: 3px; margin-bottom: 0px; line-height: 1;">STREC</h1>
 <p style="color: #666666; font-size: 11px; font-weight: bold; letter-spacing: 3px; margin-top: 5px; margin-bottom: 40px;">ULTRA 1080P 60FPS BROADCASTER</p>
