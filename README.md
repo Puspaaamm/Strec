@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- Injected External Web Font Pipeline for Bebas Neue Rendering -->
-<'https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap'>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap">
 
 <!-- Project Logo Identity Header -->
 <h1 style="color: #FF0055; font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: 84px; letter-spacing: 3px; margin-bottom: 0px; line-height: 1;">STREC</h1>
