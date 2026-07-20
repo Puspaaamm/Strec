@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
@@ -21,15 +22,18 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int SCREEN_CAPTURE_REQUEST = 2000;
     
+    // Core Subsystem Visual Framework Layout Anchors
     private LinearLayout mainLayout;
-    private TextView tvLogo, tvSub, tvFilters, tvThemesLabel;
+    private WebView webLogoLayer;
+    private TextView tvSub, tvFilters, tvThemesLabel;
     private EditText etStreamUrl;
     private Button btnStreamToggle, btnGithub;
     
+    // Internal Engine Variable Targets
     private boolean isLive = false;
-    private String currentAccentColor = "#FF0055"; // Default Injected Cyber Pink Accent
+    private String currentAccentColor = "#FF0055"; // Baseline Initialization Accent
 
-    // 5 Unique Dynamic Gaming Neon Preset System Blocks
+    // 5 Matrix Arrays representing individual theme configs
     private final String[][] themePresets = {
             {"CYBER PINK", "#FF0055"},
             {"NEON LIME", "#39FF14"},
@@ -42,28 +46,39 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Absolute Premium Dark Setup Core
+        // Primary Ambient Background Node Container Setup
         mainLayout = new LinearLayout(this);
         mainLayout.setOrientation(LinearLayout.VERTICAL);
-        mainLayout.setPadding(60, 80, 60, 60);
+        mainLayout.setPadding(60, 60, 60, 60);
         mainLayout.setGravity(Gravity.CENTER_HORIZONTAL);
         mainLayout.setBackgroundColor(Color.parseColor("#0A0A0C")); 
 
-        // Logo Header Design Identity
-        tvLogo = new TextView(this);
-        tvLogo.setText("STREC");
-        tvLogo.setTextSize(64); 
-        tvLogo.setTypeface(Typeface.create("sans-serif-condensed", Typeface.BOLD));
-        tvLogo.setGravity(Gravity.CENTER);
-        mainLayout.addView(tvLogo);
+        // 1. HARDCODED DECODER CORE TO PLAY NATIVE VECTOR SVG LOGO FROM REMOTE SERVER
+        webLogoLayer = new WebView(this);
+        webLogoLayer.setBackgroundColor(Color.TRANSPARENT);
+        webLogoLayer.getSettings().setJavaScriptEnabled(true);
+        
+        // Formulates an isolated viewport loop that centers the dynamic content fluidly
+        String svgTargetUrl = "https://imagetourl.cloud/6nhspwvz.svg";
+        String pipelineHtml = "<html><body style='margin:0;padding:0;display:flex;justify-content:center;align-items:center;background:transparent;'>"
+                + "<img src='" + svgTargetUrl + "' style='width:auto;height:95px;max-width:100%;object-fit:contain;'/>"
+                + "</body></html>";
+        webLogoLayer.loadDataWithBaseURL(null, pipelineHtml, "text/html", "UTF-8", null);
 
+        LinearLayout.LayoutParams webViewParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, 260);
+        webViewParams.setMargins(0, 40, 0, 10);
+        webLogoLayer.setLayoutParams(webViewParams);
+        mainLayout.addView(webLogoLayer);
+
+        // Broadcaster Descriptor Label
         tvSub = new TextView(this);
         tvSub.setText("ULTRA 1080P 60FPS BROADCASTER");
         tvSub.setTextSize(10);
         tvSub.setPadding(0, 0, 0, 70);
         mainLayout.addView(tvSub);
 
-        // Target Ingestion Real-time Endpoint Input Box
+        // 2. INPUT TARGET INGESTION FIELD
         etStreamUrl = new EditText(this);
         etStreamUrl.setHint("rtmp://a.rtmp.youtube.com/live2/YOUR_STREAM_KEY");
         etStreamUrl.setHintTextColor(Color.parseColor("#444446"));
@@ -73,139 +88,144 @@ public class MainActivity extends AppCompatActivity {
         etStreamUrl.setBackgroundColor(Color.parseColor("#141416"));
         mainLayout.addView(etStreamUrl);
 
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams inputBtnParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(0, 40, 0, 60);
+        inputBtnParams.setMargins(0, 40, 0, 60);
 
-        // Streaming Toggle Command System
+        // 3. MASTER TRANSMISSION SYSTEM ENGINE CONTROL TOGGLE
         btnStreamToggle = new Button(this);
         btnStreamToggle.setText("START BROADCASTING");
         btnStreamToggle.setTextColor(Color.WHITE);
         btnStreamToggle.setTypeface(Typeface.DEFAULT_BOLD);
-        btnStreamToggle.setLayoutParams(layoutParams);
+        btnStreamToggle.setLayoutParams(inputBtnParams);
         mainLayout.addView(btnStreamToggle);
 
-        // Themes Deck Engine Instantiation
+        // 4. THEME CONTROL SELECTION INTERFACE CONTROLLERS
         tvThemesLabel = new TextView(this);
         tvThemesLabel.setText("DYNAMIC AMBIENT THEME MATRIX");
         tvThemesLabel.setTextSize(11);
         tvThemesLabel.setPadding(0, 20, 0, 20);
         mainLayout.addView(tvThemesLabel);
 
-        HorizontalScrollView themesScroller = new HorizontalScrollView(this);
-        themesScroller.setHorizontalScrollBarEnabled(false);
-        LinearLayout themesContainer = new LinearLayout(this);
-        themesContainer.setOrientation(LinearLayout.HORIZONTAL);
+        HorizontalScrollView scrollThemesNode = new HorizontalScrollView(this);
+        scrollThemesNode.setHorizontalScrollBarEnabled(false);
+        LinearLayout innerThemesLayout = new LinearLayout(this);
+        innerThemesLayout.setOrientation(LinearLayout.HORIZONTAL);
 
-        for (String[] theme : themePresets) {
-            Button btnTheme = new Button(this);
-            btnTheme.setText(theme[0]);
-            btnTheme.setTextSize(10);
-            btnTheme.setTextColor(Color.WHITE);
-            btnTheme.setBackgroundColor(Color.parseColor("#1C1C1E"));
+        for (String[] targetTheme : themePresets) {
+            Button singleThemeTab = new Button(this);
+            singleThemeTab.setText(targetTheme[0]);
+            singleThemeTab.setTextSize(10);
+            singleThemeTab.setTextColor(Color.WHITE);
+            singleThemeTab.setBackgroundColor(Color.parseColor("#1C1C1E"));
             
-            LinearLayout.LayoutParams itemParams = new LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams horizontalParams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            itemParams.setMargins(10, 0, 10, 0);
-            btnTheme.setLayoutParams(itemParams);
+            horizontalParams.setMargins(10, 0, 10, 0);
+            singleThemeTab.setLayoutParams(horizontalParams);
 
-            btnTheme.setOnClickListener(v -> applyDynamicColorMatrix(theme[1]));
-            themesContainer.addView(btnTheme);
+            singleThemeTab.setOnClickListener(v -> triggerAccentTransformation(targetTheme[1]));
+            innerThemesLayout.addView(singleThemeTab);
         }
-        themesScroller.addView(themesContainer);
-        mainLayout.addView(themesScroller);
+        scrollThemesNode.addView(innerThemesLayout);
+        mainLayout.addView(scrollThemesNode);
 
-        // Live GPU Shaders Filter Core Module List
+        // 5. OPENGL GRAPHICS LIVE BITRATE FILTERS CONTROLS
         tvFilters = new TextView(this);
         tvFilters.setText("LIVE GPU GRAPHICS FILTERS");
         tvFilters.setTextSize(11);
         tvFilters.setPadding(0, 60, 0, 20);
         mainLayout.addView(tvFilters);
 
-        HorizontalScrollView filtersScroller = new HorizontalScrollView(this);
-        filtersScroller.setHorizontalScrollBarEnabled(false);
-        LinearLayout filtersContainer = new LinearLayout(this);
-        filtersContainer.setOrientation(LinearLayout.HORIZONTAL);
+        HorizontalScrollView scrollFiltersNode = new HorizontalScrollView(this);
+        scrollFiltersNode.setHorizontalScrollBarEnabled(false);
+        LinearLayout innerFiltersLayout = new LinearLayout(this);
+        innerFiltersLayout.setOrientation(LinearLayout.HORIZONTAL);
 
-        String[] filterNames = {"Normal", "Vivid", "Classic", "Ocean", "4K Sharp"};
-        for (String name : filterNames) {
-            Button btnFilter = new Button(this);
-            btnFilter.setText(name.toUpperCase());
-            btnFilter.setTextSize(10);
-            btnFilter.setTextColor(Color.WHITE);
-            btnFilter.setBackgroundColor(Color.parseColor("#1C1C1E"));
+        String[] processingFilterNames = {"Normal", "Vivid", "Classic", "Ocean", "4K Sharp"};
+        for (String filterInstance : processingFilterNames) {
+            Button individualFilterBtn = new Button(this);
+            individualFilterBtn.setText(filterInstance.toUpperCase());
+            individualFilterBtn.setTextSize(10);
+            individualFilterBtn.setTextColor(Color.WHITE);
+            individualFilterBtn.setBackgroundColor(Color.parseColor("#1C1C1E"));
             
-            LinearLayout.LayoutParams itemParams = new LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams horizontalParams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            itemParams.setMargins(10, 0, 10, 0);
-            btnFilter.setLayoutParams(itemParams);
+            horizontalParams.setMargins(10, 0, 10, 0);
+            individualFilterBtn.setLayoutParams(horizontalParams);
 
-            btnFilter.setOnClickListener(v -> {
+            individualFilterBtn.setOnClickListener(v -> {
                 if (isLive) {
-                    Intent filterIntent = new Intent(this, StreamService.class)
+                    Intent intentPayload = new Intent(this, StreamService.class)
                             .setAction("CHANGE_FILTER")
-                            .putExtra("FILTER_TYPE", name);
-                    startService(filterIntent);
-                    Toast.makeText(this, name + " Filter Injected", Toast.LENGTH_SHORT).show();
+                            .putExtra("FILTER_TYPE", filterInstance);
+                    startService(intentPayload);
+                    Toast.makeText(this, filterInstance + " Filter Injected", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(this, "Broadcast pipeline inactive!", Toast.LENGTH_SHORT).show();
                 }
             });
-            filtersContainer.addView(btnFilter);
+            innerFiltersLayout.addView(individualFilterBtn);
         }
-        filtersScroller.addView(filtersContainer);
-        mainLayout.addView(filtersScroller);
+        scrollFiltersNode.addView(innerFiltersLayout);
+        mainLayout.addView(scrollFiltersNode);
 
-        // Injected Dedicated Hardcoded Official Repository Anchor Gateway
-        LinearLayout.LayoutParams gitParams = new LinearLayout.LayoutParams(
+        // 6. OFFICIAL SOURCE TARGET ENDPOINT LINK HUB FOR COMPLIANCE 
+        LinearLayout.LayoutParams anchorParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        gitParams.setMargins(0, 100, 0, 0);
+        anchorParams.setMargins(0, 100, 0, 0);
 
         btnGithub = new Button(this);
         btnGithub.setText("VIEW SOURCE ON GITHUB");
         btnGithub.setTextSize(11);
         btnGithub.setBackgroundColor(Color.TRANSPARENT);
-        btnGithub.setLayoutParams(gitParams);
+        btnGithub.setLayoutParams(anchorParams);
         
         btnGithub.setOnClickListener(v -> {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/Puspaaamm/Strec"));
-            startActivity(browserIntent);
+            Intent routingWebIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/Puspaaamm/Strec"));
+            startActivity(routingWebIntent);
         });
         mainLayout.addView(btnGithub);
 
-        applyDynamicColorMatrix(currentAccentColor);
+        // Initialize Dynamic Colors baseline system properties
+        triggerAccentTransformation(currentAccentColor);
         setContentView(mainLayout);
 
+        // Setup Stream Engagement Listener Configuration Core
         btnStreamToggle.setOnClickListener(v -> {
             if (!isLive) {
-                String url = etStreamUrl.getText().toString().trim();
-                if (url.isEmpty()) {
+                String inputUri = etStreamUrl.getText().toString().trim();
+                if (inputUri.isEmpty()) {
                     Toast.makeText(this, "Target ingestion URL required!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                MediaProjectionManager manager = (MediaProjectionManager) getSystemService(MEDIA_PROJECTION_SERVICE);
-                if (manager != null) {
-                    startActivityForResult(manager.createScreenCaptureIntent(), SCREEN_CAPTURE_REQUEST);
+                MediaProjectionManager projectionManagerInstance = (MediaProjectionManager) getSystemService(MEDIA_PROJECTION_SERVICE);
+                if (projectionManagerInstance != null) {
+                    startActivityForResult(projectionManagerInstance.createScreenCaptureIntent(), SCREEN_CAPTURE_REQUEST);
                 }
             } else {
-                stopStreamingProcess();
+                executePipelineTeardown();
             }
         });
     }
 
-    private void applyDynamicColorMatrix(String hexColor) {
-        currentAccentColor = hexColor;
-        int parsedColor = Color.parseColor(hexColor);
+    /**
+     * Runtime layout matrix color shifter engine.
+     * @param requestedAccentColor target hex value applied to control parameters.
+     */
+    private void triggerAccentTransformation(String requestedAccentColor) {
+        currentAccentColor = requestedAccentColor;
+        int resolvedHexColor = Color.parseColor(requestedAccentColor);
         
-        tvLogo.setTextColor(parsedColor);
         tvSub.setTextColor(Color.parseColor("#666668"));
-        tvThemesLabel.setTextColor(parsedColor);
-        tvFilters.setTextColor(parsedColor);
+        tvThemesLabel.setTextColor(resolvedHexColor);
+        tvFilters.setTextColor(resolvedHexColor);
         
         if (!isLive) {
-            btnStreamToggle.setBackgroundColor(parsedColor);
+            btnStreamToggle.setBackgroundColor(resolvedHexColor);
         }
-        btnGithub.setTextColor(parsedColor);
+        btnGithub.setTextColor(resolvedHexColor);
     }
 
     @Override
@@ -213,29 +233,30 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == SCREEN_CAPTURE_REQUEST && resultCode == RESULT_OK && data != null) {
             
-            Intent serviceIntent = new Intent(this, StreamService.class)
+            Intent broadcasterServiceIntent = new Intent(this, StreamService.class)
                     .putExtra("STREAM_URL", etStreamUrl.getText().toString().trim())
                     .putExtra("RESULT_CODE", resultCode)
                     .putExtra("DATA", data);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                startForegroundService(serviceIntent);
+                startForegroundService(broadcasterServiceIntent);
             } else {
-                startService(serviceIntent);
+                startService(broadcasterServiceIntent);
             }
 
             btnStreamToggle.setText("STOP LIVE STREAM");
             btnStreamToggle.setBackgroundColor(Color.parseColor("#2C2C2E"));
             isLive = true;
 
-            Intent homeIntent = new Intent(Intent.ACTION_MAIN)
+            // Sends App to Background to prioritize focus redirection on the gameplay layer
+            Intent backgroundLauncherIntent = new Intent(Intent.ACTION_MAIN)
                     .addCategory(Intent.CATEGORY_HOME)
                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(homeIntent);
+            startActivity(backgroundLauncherIntent);
         }
     }
 
-    private void stopStreamingProcess() {
+    private void executePipelineTeardown() {
         StreamService.stopStreaming();
         stopService(new Intent(this, StreamService.class));
         btnStreamToggle.setText("START BROADCASTING");
@@ -244,4 +265,3 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "Strec Pipeline Disengaged", Toast.LENGTH_SHORT).show();
     }
 }
-
